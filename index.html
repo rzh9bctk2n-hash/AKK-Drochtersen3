@@ -477,7 +477,76 @@
       font-size: 15px;
       line-height: 1.45;
     }
+.mini-label {
+  display: inline-flex;
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(240,0,24,0.13);
+  border: 1px solid rgba(240,0,24,0.26);
+  color: rgba(255,255,255,0.86);
+  font-size: 13px;
+  font-weight: 800;
+}
 
+.planning-steps {
+  display: grid;
+  gap: 12px;
+}
+
+.step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 15px;
+  border-radius: 18px;
+  background: rgba(0,0,0,0.26);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.step span {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  background: var(--red);
+  color: #ffffff;
+  font-weight: 900;
+  box-shadow: 0 10px 24px rgba(240,0,24,0.24);
+}
+
+.step p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.step b {
+  color: #ffffff;
+}
+
+.offer-cta {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: var(--red);
+  color: #ffffff;
+  font-weight: 900;
+  box-shadow: 0 18px 36px rgba(240,0,24,0.28);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.offer-cta:hover {
+  transform: translateY(-2px);
+  background: #ff1029;
+}
+  
     .offer-grid {
       padding: 16px;
       display: grid;
@@ -744,17 +813,32 @@
       </div>
 
       <div class="catering-offer">
-        <div class="offer-intro">
-          <div>
-            <h3>Das Catering-Angebot</h3>
-            <p>
-              Ob kleine Familienfeier, Vereinsfest oder große Veranstaltung: Die Leistungen können flexibel kombiniert werden – vom reinen Speisenangebot bis zur kompletten Versorgung vor Ort.
-            </p>
-          </div>
-          <div class="offer-note">
-            Tipp: Später können wir hier noch einen Button „Catering anfragen“ mit Kontaktformular oder direkter Mail-Verlinkung ergänzen.
-          </div>
-        </div>
+  <div class="offer-intro">
+    <div>
+      <div class="mini-label">Individuell planbar</div>
+      <h3>Das Catering-Angebot</h3>
+      <p>
+        Ob kleine Familienfeier, Vereinsfest oder große Veranstaltung: Wir stellen euer Catering flexibel zusammen – passend zu Anlass, Gästezahl und gewünschtem Ablauf.
+      </p>
+    </div>
+
+    <div class="planning-steps">
+      <div class="step">
+        <span>1</span>
+        <p><b>Anlass nennen</b><br>Geburtstag, Hochzeit, Vereinsfest oder Firmenfeier.</p>
+      </div>
+      <div class="step">
+        <span>2</span>
+        <p><b>Wünsche abstimmen</b><br>Speisen, Getränke, Personal und Ausstattung kombinieren.</p>
+      </div>
+      <div class="step">
+        <span>3</span>
+        <p><b>Feier genießen</b><br>Wir unterstützen euch vor Ort mit dem passenden Service.</p>
+      </div>
+    </div>
+
+    <a class="offer-cta" href="#kontakt">Catering unverbindlich anfragen</a>
+  </div>
 
         <div class="offer-grid">
           <div class="offer-item">
