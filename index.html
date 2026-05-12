@@ -1106,8 +1106,6 @@
       </div>
 
       <div class="location-slider" aria-label="Bilder der Eventlocation">
-        <button class="location-arrow prev" type="button" aria-label="Vorheriges Bild">‹</button>
-        <button class="location-arrow next" type="button" aria-label="Nächstes Bild">›</button>
 
         <div class="location-slides">
           <article class="location-slide active">
@@ -1178,40 +1176,30 @@
   </main>
 
   <script>
-    const locationSlides = document.querySelectorAll(".location-slide");
-    const locationDots = document.querySelectorAll(".location-dot");
-    const prevLocationBtn = document.querySelector(".location-arrow.prev");
-    const nextLocationBtn = document.querySelector(".location-arrow.next");
+  const locationSlides = document.querySelectorAll(".location-slide");
+  const locationDots = document.querySelectorAll(".location-dot");
 
-    let currentLocationSlide = 0;
+  let currentLocationSlide = 0;
 
-    function showLocationSlide(index) {
-      locationSlides[currentLocationSlide].classList.remove("active");
-      locationDots[currentLocationSlide].classList.remove("active");
+  function showLocationSlide(index) {
+    locationSlides[currentLocationSlide].classList.remove("active");
+    locationDots[currentLocationSlide].classList.remove("active");
 
-      currentLocationSlide = (index + locationSlides.length) % locationSlides.length;
+    currentLocationSlide = (index + locationSlides.length) % locationSlides.length;
 
-      locationSlides[currentLocationSlide].classList.add("active");
-      locationDots[currentLocationSlide].classList.add("active");
-    }
+    locationSlides[currentLocationSlide].classList.add("active");
+    locationDots[currentLocationSlide].classList.add("active");
+  }
 
-    nextLocationBtn.addEventListener("click", () => {
-      showLocationSlide(currentLocationSlide + 1);
+  locationDots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      showLocationSlide(index);
     });
+  });
 
-    prevLocationBtn.addEventListener("click", () => {
-      showLocationSlide(currentLocationSlide - 1);
-    });
-
-    locationDots.forEach((dot, index) => {
-      dot.addEventListener("click", () => {
-        showLocationSlide(index);
-      });
-    });
-
-    setInterval(() => {
-      showLocationSlide(currentLocationSlide + 1);
-    }, 6000);
-  </script>
+  setInterval(() => {
+    showLocationSlide(currentLocationSlide + 1);
+  }, 6000);
+</script>
 </body>
 </html>
