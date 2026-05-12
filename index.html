@@ -613,97 +613,168 @@
       max-width: 640px;
     }
 
-    .rooms-showcase {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .room-large {
+    .location-slider {
       position: relative;
-      min-height: 620px;
-      border-radius: var(--radius-xl);
       overflow: hidden;
+      border-radius: var(--radius-xl);
       border: 1px solid rgba(255,255,255,0.14);
       box-shadow: var(--shadow);
       background: rgba(255,255,255,0.06);
+      min-height: 680px;
     }
 
-    .room-large img {
+    .location-slides {
+      position: relative;
+      min-height: 680px;
+    }
+
+    .location-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.02);
+      transition: opacity 0.8s ease, transform 1.2s ease;
+      pointer-events: none;
+    }
+
+    .location-slide.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .location-slide img {
       width: 100%;
       height: 100%;
-      min-height: 620px;
+      min-height: 680px;
       object-fit: cover;
       display: block;
       filter: saturate(1.05) contrast(1.03);
-      transform: scale(1.01);
     }
 
-    .room-large::after {
+    .location-slide::after {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to top, rgba(0,0,0,0.86), rgba(0,0,0,0.18) 55%, rgba(0,0,0,0.08)),
-        linear-gradient(135deg, rgba(240,0,24,0.22), transparent 42%);
+        linear-gradient(to top, rgba(0,0,0,0.90), rgba(0,0,0,0.34) 48%, rgba(0,0,0,0.10)),
+        linear-gradient(135deg, rgba(240,0,24,0.24), transparent 44%);
       pointer-events: none;
     }
 
-    .room-description {
+    .location-caption {
       position: absolute;
-      left: 24px;
-      right: 24px;
-      bottom: 24px;
+      left: 32px;
+      right: 32px;
+      bottom: 32px;
       z-index: 2;
-      padding: 22px;
-      border-radius: 24px;
-      background: rgba(0,0,0,0.58);
-      border: 1px solid rgba(255,255,255,0.14);
-      backdrop-filter: blur(16px);
+      max-width: 760px;
+      padding: 28px;
+      border-radius: 28px;
+      background: rgba(0,0,0,0.64);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(18px);
     }
 
-    .room-description small {
+    .location-caption small {
       display: inline-flex;
-      margin-bottom: 10px;
-      padding: 7px 10px;
+      margin-bottom: 12px;
+      padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(240,0,24,0.16);
-      border: 1px solid rgba(240,0,24,0.28);
-      color: rgba(255,255,255,0.88);
+      background: rgba(240,0,24,0.17);
+      border: 1px solid rgba(240,0,24,0.32);
+      color: rgba(255,255,255,0.90);
       font-size: 12px;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
     }
 
-    .room-description h3 {
-      font-size: clamp(26px, 3vw, 36px);
-      line-height: 1.05;
-      letter-spacing: -0.035em;
-      margin-bottom: 10px;
+    .location-caption h3 {
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      margin-bottom: 14px;
     }
 
-    .room-description p {
+    .location-caption p {
       color: rgba(255,255,255,0.78);
-      line-height: 1.5;
-      font-size: 15px;
-      margin-bottom: 16px;
+      line-height: 1.55;
+      font-size: 17px;
+      max-width: 680px;
+      margin-bottom: 18px;
     }
 
-    .room-tags {
+    .location-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
 
-    .room-tags span {
-      padding: 8px 10px;
+    .location-tags span {
+      padding: 8px 11px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.09);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: rgba(255,255,255,0.78);
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.13);
+      color: rgba(255,255,255,0.80);
       font-size: 13px;
       font-weight: 800;
+    }
+
+    .location-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 5;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.56);
+      color: #ffffff;
+      font-size: 28px;
+      font-weight: 900;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .location-arrow:hover {
+      background: rgba(240,0,24,0.82);
+      transform: translateY(-50%) scale(1.04);
+    }
+
+    .location-arrow.prev {
+      left: 22px;
+    }
+
+    .location-arrow.next {
+      right: 22px;
+    }
+
+    .location-dots {
+      position: absolute;
+      left: 50%;
+      bottom: 22px;
+      z-index: 6;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 9px;
+    }
+
+    .location-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255,255,255,0.38);
+      cursor: pointer;
+      transition: width 0.2s ease, background 0.2s ease;
+    }
+
+    .location-dot.active {
+      width: 28px;
+      background: var(--red);
     }
 
     .service-strip {
@@ -774,8 +845,7 @@
       .strip-inner,
       .section-head,
       .catering-offer,
-      .event-head,
-      .rooms-showcase {
+      .event-head {
         grid-template-columns: 1fr;
       }
 
@@ -787,9 +857,10 @@
         grid-template-columns: 1fr;
       }
 
-      .room-large,
-      .room-large img {
-        min-height: 520px;
+      .location-slider,
+      .location-slides,
+      .location-slide img {
+        min-height: 560px;
       }
     }
 
@@ -839,16 +910,31 @@
         padding: 22px;
       }
 
-      .room-large,
-      .room-large img {
-        min-height: 460px;
+      .location-slider,
+      .location-slides,
+      .location-slide img {
+        min-height: 520px;
       }
 
-      .room-description {
+      .location-caption {
         left: 14px;
         right: 14px;
-        bottom: 14px;
+        bottom: 54px;
         padding: 18px;
+      }
+
+      .location-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 24px;
+      }
+
+      .location-arrow.prev {
+        left: 12px;
+      }
+
+      .location-arrow.next {
+        right: 12px;
       }
     }
   </style>
@@ -1019,42 +1105,52 @@
         </p>
       </div>
 
-      <div class="rooms-showcase">
-        <article class="room-large">
-          <img src="./assets/eventraum-1.jpg" alt="Veranstaltungsraum mit gedeckten Tischen" />
+      <div class="location-slider" aria-label="Bilder der Eventlocation">
+        <button class="location-arrow prev" type="button" aria-label="Vorheriges Bild">‹</button>
+        <button class="location-arrow next" type="button" aria-label="Nächstes Bild">›</button>
 
-          <div class="room-description">
-            <small>Veranstaltungsraum 1</small>
-            <h3>Gemütlich feiern für kleinere Veranstaltungen</h3>
-            <p>
-              Der passende Raum für kleinere Feiern, Geburtstage und gesellige Abende. Warm, persönlich und flexibel vorbereitbar – passend zu Anlass, Gästezahl und gewünschter Atmosphäre.
-            </p>
+        <div class="location-slides">
+          <article class="location-slide active">
+            <img src="./assets/eventraum-1.jpg" alt="Veranstaltungsraum für kleinere Feiern" />
 
-            <div class="room-tags">
-              <span>Geburtstage</span>
-              <span>Familienfeiern</span>
-              <span>Gemütliche Runden</span>
+            <div class="location-caption">
+              <small>Veranstaltungsraum 1</small>
+              <h3>Gemütlich feiern für kleinere Veranstaltungen</h3>
+              <p>
+                Der passende Raum für kleinere Feiern, Geburtstage und gesellige Abende. Warm, persönlich und flexibel vorbereitbar – passend zu Anlass, Gästezahl und gewünschter Atmosphäre.
+              </p>
+
+              <div class="location-tags">
+                <span>Geburtstage</span>
+                <span>Familienfeiern</span>
+                <span>Gemütliche Runden</span>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
 
-        <article class="room-large">
-          <img src="./assets/Veranstaltungsraum.jpeg" alt="Großer Veranstaltungsraum für Feiern" />
+          <article class="location-slide">
+            <img src="./assets/Veranstaltungsraum.jpeg" alt="Großer Veranstaltungsraum für besondere Anlässe" />
 
-          <div class="room-description">
-            <small>Veranstaltungsraum 2</small>
-            <h3>Mehr Platz für besondere Anlässe</h3>
-            <p>
-              Für größere Gruppen, Vereinsabende oder Veranstaltungen mit Buffet. Gemeinsam stimmen wir Bestuhlung, Ablauf, Getränke und Catering auf eure Feier ab.
-            </p>
+            <div class="location-caption">
+              <small>Veranstaltungsraum 2</small>
+              <h3>Mehr Platz für besondere Anlässe</h3>
+              <p>
+                Für größere Gruppen, Vereinsabende oder Veranstaltungen mit Buffet. Gemeinsam stimmen wir Bestuhlung, Ablauf, Getränke und Catering auf eure Feier ab.
+              </p>
 
-            <div class="room-tags">
-              <span>Vereinsabende</span>
-              <span>Buffet möglich</span>
-              <span>Flexible Planung</span>
+              <div class="location-tags">
+                <span>Vereinsabende</span>
+                <span>Buffet möglich</span>
+                <span>Flexible Planung</span>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
+
+        <div class="location-dots" aria-label="Slider-Navigation">
+          <button class="location-dot active" type="button" aria-label="Bild 1 anzeigen"></button>
+          <button class="location-dot" type="button" aria-label="Bild 2 anzeigen"></button>
+        </div>
       </div>
     </section>
 
@@ -1080,5 +1176,42 @@
       </div>
     </section>
   </main>
+
+  <script>
+    const locationSlides = document.querySelectorAll(".location-slide");
+    const locationDots = document.querySelectorAll(".location-dot");
+    const prevLocationBtn = document.querySelector(".location-arrow.prev");
+    const nextLocationBtn = document.querySelector(".location-arrow.next");
+
+    let currentLocationSlide = 0;
+
+    function showLocationSlide(index) {
+      locationSlides[currentLocationSlide].classList.remove("active");
+      locationDots[currentLocationSlide].classList.remove("active");
+
+      currentLocationSlide = (index + locationSlides.length) % locationSlides.length;
+
+      locationSlides[currentLocationSlide].classList.add("active");
+      locationDots[currentLocationSlide].classList.add("active");
+    }
+
+    nextLocationBtn.addEventListener("click", () => {
+      showLocationSlide(currentLocationSlide + 1);
+    });
+
+    prevLocationBtn.addEventListener("click", () => {
+      showLocationSlide(currentLocationSlide - 1);
+    });
+
+    locationDots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        showLocationSlide(index);
+      });
+    });
+
+    setInterval(() => {
+      showLocationSlide(currentLocationSlide + 1);
+    }, 6000);
+  </script>
 </body>
 </html>
